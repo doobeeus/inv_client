@@ -35,7 +35,7 @@ const Login = () => {
   };
   try {
     const data = await loginUser(userData);
-    console.log(data);
+    console.log(data); // thing that is actually putting out data in console from authService.js
     if (data){
       navigate("/home");
     }

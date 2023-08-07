@@ -40,7 +40,7 @@ export const loginUser = async (userData) => {
     );
     if (response.statusText === "OK") {
       alert("Login Successful...");
-      return response.data;
+      return response.data; // data output, but none of the others are working? possibly due to jwt and authmiddleware?
     }
 
   } catch (error) {
@@ -48,7 +48,7 @@ export const loginUser = async (userData) => {
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||
       error.toString();
-    alert(message);
+    toast.error(message);
     return console.log(message);
   }
 };
@@ -63,6 +63,7 @@ export const logoutUser = async () => {
       error.message ||
       error.toString();
     toast.error(message);
+    return console.log(message);
   }
 };
 
@@ -111,5 +112,41 @@ export const getUser = async () => {
       error.message ||
       error.toString();
     toast.error(message);
+    return console.log(message);
+  }
+};
+
+// create Client
+export const createClientFunction = async (clientData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/clients/registerclient`,
+      clientData
+          );
+    if (response.statusText === "OK") {
+      toast.success("Client Registered successfully");
+      return response.data;
+    }
+  } catch (error) {
+    const message = 
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};
+
+export const getAllClientInfo = async () => {
+  try {
+    const response = await axios.get(`${BACKEND_URL}/api/clients/getAllClientInfo`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
   }
 };
