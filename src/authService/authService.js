@@ -150,3 +150,24 @@ export const getAllClientInfo = async () => {
     return console.log(message);
   }
 };
+
+// create Inventory
+export const createInventoryFunction = async (invData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/inventories/createInv`,
+      invData
+          );
+    if (response.statusText === "OK") {
+      toast.success("Inventory Registered successfully");
+      return response.data;
+    }
+  } catch (error) {
+    const message = 
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};
