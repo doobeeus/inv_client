@@ -105,7 +105,7 @@ export const logoutUser = async () => {
 export const getUser = async () => {
   try {
     const response = await axios.get(`${BACKEND_URL}/api/users/getuser`);
-    return response.data;
+    return console.log(response.data);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -123,17 +123,18 @@ export const createClientFunction = async (clientData) => {
       `${BACKEND_URL}/api/clients/registerclient`,
       clientData
           );
-    if (response.statusText === "OK") {
+    console.log(response.status);
+    if (response.ok) {
       toast.success("Client Registered successfully");
-      return response.data;
     }
+    return response;
   } catch (error) {
     const message = 
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||
       error.toString();
-    toast.error(message);
-    return console.log(message);
+    return toast.error(message);
+    ;
   }
 };
 
@@ -158,16 +159,12 @@ export const createInventoryFunction = async (invData) => {
       `${BACKEND_URL}/api/inventories/createInv`,
       invData
           );
-    if (response.statusText === "OK") {
-      toast.success("Inventory Registered successfully");
-      return response.data;
-    }
+    return response;
   } catch (error) {
     const message = 
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||
       error.toString();
-    toast.error(message);
-    return console.log(message);
+    return toast.error(message);
   }
 };

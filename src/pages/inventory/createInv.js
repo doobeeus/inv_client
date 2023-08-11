@@ -1,22 +1,26 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { createInventoryFunction } from "../../authService/authService";
 // import { registerUser, validateEmail } from "../../authService/authService";
 
-const initialState = {
-    clientName: "", 
-    buildingName: "", 
-    roomArea: "", 
-    fixtureType: "", 
-    lampType: "", 
-    numLamps: "", 
-    numFixtures: "", 
-    lampWattage: ""
-  };
 
 const CreateInventory = () => {
-
+  const location = useLocation();
+  const prevData = location.state;
+  console.log(prevData);
+  console.log(prevData.clientName);
+  console.log(prevData.buildingName);
+  const initialState = {
+      clientName: prevData.clientName, 
+      buildingName: prevData.buildingName, 
+      roomArea: "", 
+      fixtureType: "", 
+      lampType: "", 
+      numLamps: "", 
+      numFixtures: "", 
+      lampWattage: ""
+    };
 const navigate = useNavigate();
 const [formData, setformData] = useState(initialState);
 const { clientName, buildingName, roomArea, fixtureType, lampType, numLamps, numFixtures, lampWattage } = formData;
@@ -36,14 +40,13 @@ if (!clientName || !buildingName|| !roomArea || !fixtureType || !lampType || !nu
 const invData = {
   clientName, buildingName, roomArea, fixtureType, lampType, numLamps, numFixtures, lampWattage
 };
-
 try {
   const data = await createInventoryFunction(invData);
-  if (data){
-    console.log("YAY!")
-    alert("Client created successfully");
+  if(data.status == 201){
+    const clientData = {clientName : invData.clientName, buildingName: invData.buildingName};
+    console.log(clientData);
+    navigate("/invtoinvhome", {state: clientData});
   }
-
 } catch (error) {
    console.log(error);
   }
@@ -62,7 +65,7 @@ try {
                   placeholder="clientName"
                   required
                   name="clientName"
-                  value={clientName}
+                  defaultValue={prevData.clientName}
                   onChange={handleInputChange}
                 />
                 <input
@@ -70,7 +73,7 @@ try {
                   placeholder="buildingName"
                   required
                   name="buildingName"
-                  value={buildingName}
+                  defaultValue={prevData.buildingName}
                   onChange={handleInputChange}
                 />
                 <input
@@ -128,8 +131,6 @@ try {
     
               <span>
                 <Link to="/home">Home</Link>
-                <p> &nbsp; Already have an account? &nbsp;</p>
-                <Link to="/login">Login</Link>
               </span>
             </div>
         </div>

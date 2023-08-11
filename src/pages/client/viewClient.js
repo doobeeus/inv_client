@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, React } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getAllClientInfo } from "../../authService/authService";
+import Button from 'react-bootstrap/Button';
+
 
 const ViewClient = () => {
+    const navigate = useNavigate();
     const [clientData, setClientData] = useState([]);
     useEffect(() => {
         const fetchedClientData = [];
@@ -14,7 +17,6 @@ const ViewClient = () => {
                 data.forEach((doc) => {
                     allDocs.push({...doc});
                 });
-                console.log(allDocs);
                 for (const item of allDocs){
                     fetchedClientData.push(item);
                 }
@@ -27,12 +29,23 @@ const ViewClient = () => {
         };
         fetchData();
     }, []);
+
+    const handleClick = (clientName, buildingName) => {
+        const data = {clientName : clientName, buildingName: buildingName};
+        navigate("/createinv", {state: data});
+    }
       return (
         <div>
             <div>
               <div className="--flex-center">
-              <h2>View clients</h2>
-              {clientData.map((client, index) => <li>{client.compName}</li>)}
+              <h2>Click client to use in inventory</h2>
+              {clientData.map((client, index) => 
+              <ul>
+                <li>
+              <Button onClick= {() => handleClick(client.clientName, client.buildingName)}> {client.clientName}<br></br>{client.buildingName}</Button>
+              </li>
+              </ul>
+              )}
               </div>
               
             </div>

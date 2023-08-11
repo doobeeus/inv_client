@@ -6,11 +6,7 @@ const Home = () => {
     <div>
       <h1>Home Page</h1>
       <span>
-            <Link to="/registerclient">Create Client</Link>
-            <br></br>
-            <Link to="/viewclient">View Clients</Link>
-            <br></br>
-            <Link to="/createinv">Create Inventory</Link>
+            <Link to="/invtoclient">Create Inventory</Link>
           </span>
     </div> 
   );

@@ -5,7 +5,7 @@ import { createClientFunction } from "../../authService/authService";
 // import { registerUser, validateEmail } from "../../authService/authService";
 
 const initialState = {
-    compName: "", 
+    clientName: "", 
     buildingName: "", 
     address: "",
     contactName: "", 
@@ -18,7 +18,7 @@ const CreateClient = () => {
 
 const navigate = useNavigate();
 const [formData, setformData] = useState(initialState);
-const { compName, buildingName, address, contactName, phoneNum, contactEmail, hoursOp} = formData;
+const { clientName, buildingName, address, contactName, phoneNum, contactEmail, hoursOp} = formData;
 
 const handleInputChange = (e) => {
   const { name, value } = e.target;
@@ -28,19 +28,19 @@ const handleInputChange = (e) => {
 const register = async (e) => {
   e.preventDefault();
     
-if (!compName || !buildingName|| !address || !contactName|| !phoneNum || !contactEmail || !hoursOp) {
+if (!clientName || !buildingName|| !address || !contactName|| !phoneNum || !contactEmail || !hoursOp) {
   return toast.error("All fields are required");
 }
     
 const clientData = {
-    compName, buildingName, address, contactName, phoneNum, contactEmail, hoursOp
+    clientName, buildingName, address, contactName, phoneNum, contactEmail, hoursOp
 };
 try {
   const data = await createClientFunction(clientData);
-  if (data){
-    alert("Client created successfully");
+  if(data.status == 201){
+    const transferData = {clientName : clientName, buildingName: buildingName};
+    navigate("/createinv", {state: transferData});
   }
-
 } catch (error) {
    console.log(error);
   }
@@ -56,10 +56,10 @@ try {
               <form onSubmit={register}>
                 <input
                   type="text"
-                  placeholder="compName"
+                  placeholder="clientName"
                   required
-                  name="compName"
-                  value={compName}
+                  name="clientName"
+                  value={clientName}
                   onChange={handleInputChange}
                 />
                 <input
@@ -110,7 +110,7 @@ try {
                   value={hoursOp}
                   onChange={handleInputChange}
                 />
-                <button type="submit" className="--btn --btn-primary --btn-block">
+                <button type="submit" className="--btn --btn-primary --btn-block" >
                   Register Client
                 </button>
               </form>
