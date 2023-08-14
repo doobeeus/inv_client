@@ -7,6 +7,8 @@ import ViewClient from "./pages/client/viewClient.js";
 import CreateInventory from "./pages/inventory/createInv.js";
 import InvToClient from "./pages/routes/fromInvToClient.js";
 import InvToInvHome from "./pages/routes/InvToInvOrInvToHome.js";
+import ViewInventory from "./pages/inventory/viewInv.js";
+
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +21,7 @@ function App() {
         <Route path="createinv" element = {<CreateInventory />} />
         <Route path="invtoclient" element = {<InvToClient />} />
         <Route path="invtoinvhome" element = {<InvToInvHome />} />
+        <Route path="viewinv" element = {<ViewInventory />} />
       </Routes>
     </BrowserRouter>
   );

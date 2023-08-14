@@ -168,3 +168,18 @@ export const createInventoryFunction = async (invData) => {
     return toast.error(message);
   }
 };
+
+// view Inventory
+export const getAllInventory = async () => {
+  try {
+    const response = await axios.get(`${BACKEND_URL}/api/inventories/getAllInv`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};

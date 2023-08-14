@@ -38,7 +38,7 @@ const clientData = {
 try {
   const data = await createClientFunction(clientData);
   if(data.status == 201){
-    const transferData = {clientName : clientName, buildingName: buildingName};
+  const transferData = {clientName : clientName, buildingName: buildingName};
     navigate("/createinv", {state: transferData});
   }
 } catch (error) {
