@@ -8,9 +8,6 @@ import { createInventoryFunction } from "../../authService/authService";
 const CreateInventory = () => {
   const location = useLocation();
   const prevData = location.state;
-  console.log(prevData);
-  console.log(prevData.clientName);
-  console.log(prevData.buildingName);
   const initialState = {
       clientName: prevData.clientName, 
       buildingName: prevData.buildingName, 
@@ -42,7 +39,7 @@ const invData = {
 };
 try {
   const data = await createInventoryFunction(invData);
-  if(data.status == 201){
+  if(data.status === 201){
     const clientData = {clientName : invData.clientName, buildingName: invData.buildingName};
     console.log(clientData);
     navigate("/invtoinvhome", {state: clientData});

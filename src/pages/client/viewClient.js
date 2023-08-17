@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { getAllClientInfo } from "../../authService/authService";
 import Button from 'react-bootstrap/Button';
 
-
 const ViewClient = () => {
     const navigate = useNavigate();
     const [clientData, setClientData] = useState([]);

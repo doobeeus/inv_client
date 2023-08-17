@@ -183,3 +183,20 @@ export const getAllInventory = async () => {
     return console.log(message);
   }
 };
+
+export const queryExportFunction = async (queryData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/inventories/queryInv`
+      , queryData
+      );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};

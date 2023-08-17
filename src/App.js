@@ -8,6 +8,8 @@ import CreateInventory from "./pages/inventory/createInv.js";
 import InvToClient from "./pages/routes/fromInvToClient.js";
 import InvToInvHome from "./pages/routes/InvToInvOrInvToHome.js";
 import ViewInventory from "./pages/inventory/viewInv.js";
+import SearchExport from "./pages/search/searchExport.js";
+import ExportInventory from "./pages/inventory/exportInv.js";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path="invtoclient" element = {<InvToClient />} />
         <Route path="invtoinvhome" element = {<InvToInvHome />} />
         <Route path="viewinv" element = {<ViewInventory />} />
+        <Route path="searchexport" element = {<SearchExport />} />
+        <Route path="exportinv" element = {<ExportInventory />} />
       </Routes>
     </BrowserRouter>
   );

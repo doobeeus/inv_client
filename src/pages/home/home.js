@@ -9,6 +9,8 @@ const Home = () => {
             <Link to="/invtoclient">Create Inventory</Link>
             <br></br>
             <Link to="/viewinv">View inventories</Link>
+            <br></br>
+            <Link to="/searchexport">Search for Inventories to export</Link>
           </span>
     </div> 
   );
