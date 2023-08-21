@@ -67,55 +67,6 @@ export const logoutUser = async () => {
   }
 };
 
-// // Forgot Password
-// export const forgotPassword = async (userData) => {
-//   try {
-//     const response = await axios.post(
-//       `${BACKEND_URL}/api/users/forgotpassword`,
-//       userData
-//     );
-//     toast.success(response.data.message);
-//   } catch (error) {
-//     const message =
-//       (error.response && error.response.data && error.response.data.message) ||
-//       error.message ||
-//       error.toString();
-//     toast.error(message);
-//   }
-// };
-
-// // Reset Password
-// export const resetPassword = async (userData, resetToken) => {
-//   try {
-//     const response = await axios.put(
-//       `${BACKEND_URL}/api/users/resetpassword/${resetToken}`,
-//       userData
-//     );
-//     return response.data;
-//   } catch (error) {
-//     const message =
-//       (error.response && error.response.data && error.response.data.message) ||
-//       error.message ||
-//       error.toString();
-//     toast.error(message);
-//   }
-// };
-
-// Get User Profile
-export const getUser = async () => {
-  try {
-    const response = await axios.get(`${BACKEND_URL}/api/users/getuser`);
-    return console.log(response.data);
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
-    toast.error(message);
-    return console.log(message);
-  }
-};
-
 // create Client
 export const createClientFunction = async (clientData) => {
   try {
@@ -138,6 +89,7 @@ export const createClientFunction = async (clientData) => {
   }
 };
 
+// list all client data
 export const getAllClientInfo = async () => {
   try {
     const response = await axios.get(`${BACKEND_URL}/api/clients/getAllClientInfo`);
@@ -184,10 +136,64 @@ export const getAllInventory = async () => {
   }
 };
 
-export const queryExportFunction = async (queryData) => {
+// query to find inventory
+export const queryInvFunction = async (queryData) => {
   try {
     const response = await axios.post(
       `${BACKEND_URL}/api/inventories/queryInv`
+      , queryData
+      );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};
+
+export const getOneInvFunction = async (queryData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/inventories/getoneinv`
+      , queryData
+      );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};
+
+// delete inventory
+export const deleteInvFunction = async (queryData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/inventories/deleteInv`
+      , queryData
+      );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};
+
+// edit inventory
+export const editInvFunction = async (queryData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/inventories/editInv`
       , queryData
       );
     return response.data;

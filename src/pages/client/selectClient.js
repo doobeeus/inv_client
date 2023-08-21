@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { getAllClientInfo } from "../../authService/authService";
 import Button from 'react-bootstrap/Button';
 
-const ViewClient = () => {
+const SelectClient = () => {
     const navigate = useNavigate();
     const [clientData, setClientData] = useState([]);
     useEffect(() => {
@@ -52,4 +52,4 @@ const ViewClient = () => {
   };
 
 
-  export default ViewClient;
+  export default SelectClient;

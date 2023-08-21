@@ -1,11 +1,11 @@
 import { useEffect, useState, React } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getAllClientInfo, getAllInventory } from "../../authService/authService";
+import { getAllClientInfo, getAllInventory, editInvFunction, deleteInvFunction } from "../../authService/authService";
 import Button from 'react-bootstrap/Button';
 
 
-const ViewInventory = () => {
+const ViewAllInventory = () => {
     const navigate = useNavigate();
     const [invData, setInvData] = useState([]);
     useEffect(() => {
@@ -29,10 +29,6 @@ const ViewInventory = () => {
         fetchData();
     }, []);
 
-    // const handleClick = (clientName, buildingName) => {
-    //     const data = {clientName : clientName, buildingName: buildingName};
-    //     navigate("/createinv", {state: data});
-    // }
       return (
         <div>
             <div>
@@ -40,10 +36,17 @@ const ViewInventory = () => {
               <h2>View Inventory</h2>
               {invData.map((inv, index) => 
               <ul>
-                <li>
-               {inv.clientName}<br></br>{inv.buildingName}
-              </li>
-              </ul>
+              <li>
+             Client Name: {inv.clientName}<br></br>
+             Building Name: {inv.buildingName}<br></br>
+             Room Area: {inv.roomArea}<br></br>
+             Fixture Type: {inv.fixtureType}<br></br>
+             Lamp Type: {inv.lampType}<br></br>
+             Number of Lamps: {inv.numLamps}<br></br>
+             Number of Fixtures: {inv.numFixtures}<br></br>
+             Lamp Wattage: {inv.lampWattage}<br></br>
+            </li>
+            </ul>
               )}
               </div>
               
@@ -53,4 +56,4 @@ const ViewInventory = () => {
   };
 
 
-  export default ViewInventory;
+  export default ViewAllInventory;

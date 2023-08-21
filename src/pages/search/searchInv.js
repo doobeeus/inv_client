@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { queryExportFunction } from "../../authService/authService";
 import Button from 'react-bootstrap/Button';
 
 const initialState = {
@@ -9,7 +8,7 @@ const initialState = {
   buildingName: ""
 };
 
-const SearchExport = () => {
+const SearchInventory = () => {
   const navigate = useNavigate();
   const [formData, setformData] = useState(initialState);
   const { clientName, buildingName } = formData;
@@ -23,9 +22,13 @@ const SearchExport = () => {
     clientName,
     buildingName,
   };
-  const handleClick = (clientName, buildingName) => {
+  const exportInv = (clientName, buildingName) => {
     const data = {clientName : clientName, buildingName: buildingName};
     navigate("/exportinv", {state: data});
+};
+const viewDeleteInv = (clientName, buildingName) => {
+    const data = {clientName : clientName, buildingName: buildingName};
+    navigate("/viewdeleteinv", {state: data});
 };
     
   return (
@@ -33,7 +36,7 @@ const SearchExport = () => {
         <div>
           <div className="--flex-center">
           </div>
-          <h2>Search inventories to export by Client Name and Building Name</h2>
+          <h2>Search inventories</h2>
 
           <form>
             <input
@@ -52,7 +55,8 @@ const SearchExport = () => {
               value={buildingName}
               onChange={handleInputChange}
             />
-            <Button onClick= {() => handleClick(clientName, buildingName)}> Search Inventories </Button>
+            <Button onClick= {() => exportInv(clientName, buildingName)}> Export </Button>
+            <Button onClick= {() => viewDeleteInv(clientName, buildingName)}> Edit/Delete </Button>
 
           </form>
         </div>
@@ -60,4 +64,4 @@ const SearchExport = () => {
   );
 };
 
-export default SearchExport;
+export default SearchInventory;

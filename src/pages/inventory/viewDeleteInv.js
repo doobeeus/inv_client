@@ -1,10 +1,10 @@
 import { useEffect, useState, React } from "react";
 import { Link, useNavigate, useLocation} from "react-router-dom";
 import { toast } from "react-toastify";
-import {queryInvFunction } from "../../authService/authService";
-import { CSVLink, CSVDownload} from "react-csv";
+import {queryInvFunction, deleteInvFunction } from "../../authService/authService";
+import Button from "react-bootstrap/esm/Button";
 
-const ExportInventory = () => {
+const ViewDeleteInventory = () => {
     const location = useLocation();
     const prevData = location.state;
     const navigate = useNavigate();
@@ -30,17 +30,34 @@ const ExportInventory = () => {
         };
         fetchData();
     }, []);
+    const editInv = (_id) => {
+        const data = {_id: _id};
+        navigate("/editinv", {state: data});
+    };
+    const deleteInv = async(_id) => {
+        const data = {_id: _id};
+            try{
+            const dlt = await deleteInvFunction(data);
+            if(dlt.acknowledged === true && dlt.deletedCount === 1){
+                alert("Delete Success!");
+            }
+            }
+            catch(e){
+                console.log(e);
+            }
+    };
 
       return (
         <div>
             <div>
               <div className="--flex-center">
-              <h2>Export Inventory</h2>
-              <h3>Client Name: {prevData.clientName}</h3>
-              <h3>Building Name: {prevData.buildingName}</h3>
+              <h2>Edit or Delete Inventory</h2>
               {invData.map((inv, index) => 
               <ul>
                <li>
+                _id: {inv._id} <br></br>
+               Client Name: {inv.clientName}<br></br>
+               Building Name: {inv.buildingName}<br></br>
                Room Area: {inv.roomArea}<br></br>
                Fixture Type: {inv.fixtureType}<br></br>
                Lamp Type: {inv.lampType}<br></br>
@@ -48,11 +65,11 @@ const ExportInventory = () => {
                Number of Fixtures: {inv.numFixtures}<br></br>
                Lamp Wattage: {inv.lampWattage}<br></br>
               </li>
+              <Button onClick= {() => editInv(inv._id)}> Edit </Button>
+              <Button onClick= {() => deleteInv(inv._id)}> Delete </Button>
               </ul>
               )}
               </div>
-              <CSVLink data={invData}>Download me</CSVLink>;
-
               
             </div>
         </div>
@@ -60,4 +77,4 @@ const ExportInventory = () => {
   };
 
 
-  export default ExportInventory;
+  export default ViewDeleteInventory;
