@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation} from "react-router-dom";
 import { toast } from "react-toastify";
 import {queryInvFunction, deleteInvFunction } from "../../authService/authService";
 import Button from "react-bootstrap/esm/Button";
+import { CSVLink } from "react-csv";
 
 const ViewDeleteInventory = () => {
     const location = useLocation();
@@ -55,7 +56,6 @@ const ViewDeleteInventory = () => {
               {invData.map((inv, index) => 
               <ul>
                <li>
-                _id: {inv._id} <br></br>
                Client Name: {inv.clientName}<br></br>
                Building Name: {inv.buildingName}<br></br>
                Room Area: {inv.roomArea}<br></br>
@@ -70,6 +70,8 @@ const ViewDeleteInventory = () => {
               </ul>
               )}
               </div>
+              <CSVLink data={invData}>Download me</CSVLink>;
+
               
             </div>
         </div>

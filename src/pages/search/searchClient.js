@@ -8,7 +8,7 @@ const initialState = {
   buildingName: ""
 };
 
-const SearchInventory = () => {
+const SearchClient = () => {
   const navigate = useNavigate();
   const [formData, setformData] = useState(initialState);
   const { clientName, buildingName } = formData;
@@ -22,7 +22,6 @@ const SearchInventory = () => {
     clientName,
     buildingName,
   };
-
 const viewDeleteInv = (clientName, buildingName) => {
     const data = {clientName : clientName, buildingName: buildingName};
     navigate("/viewdeleteinv", {state: data});
@@ -60,4 +59,5 @@ const viewDeleteInv = (clientName, buildingName) => {
   );
 };
 
-export default SearchInventory;
+export default SearchClient/
+;

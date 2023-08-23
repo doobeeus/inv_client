@@ -117,8 +117,6 @@ try {
     
               <span>
                 <Link to="/home">Home</Link>
-                <p> &nbsp; Already have an account? &nbsp;</p>
-                <Link to="/login">Login</Link>
               </span>
             </div>
         </div>

@@ -9,7 +9,6 @@ import InvToClient from "./pages/routes/fromInvToClient.js";
 import InvToInvHome from "./pages/routes/InvToInvOrInvToHome.js";
 import ViewAllInventory from "./pages/inventory/viewAllInv.js";
 import SearchInventory from "./pages/search/searchInv.js";
-import ExportInventory from "./pages/inventory/exportInv.js";
 import ViewDeleteInventory from "./pages/inventory/viewDeleteInv.js";
 import EditInventory from "./pages/inventory/editInv.js";
 
@@ -28,7 +27,6 @@ function App() {
         <Route path="viewallinv" element = {<ViewAllInventory />} />
         <Route path="viewdeleteinv" element = {<ViewDeleteInventory />} />
         <Route path="searchinv" element = {<SearchInventory />} />
-        <Route path="exportinv" element = {<ExportInventory />} />
         <Route path="editinv" element = {<EditInventory />} />
       </Routes>
     </BrowserRouter>

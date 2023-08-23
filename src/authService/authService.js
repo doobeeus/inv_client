@@ -154,6 +154,7 @@ export const queryInvFunction = async (queryData) => {
   }
 };
 
+// query inv by id
 export const getOneInvFunction = async (queryData) => {
   try {
     const response = await axios.post(
@@ -206,3 +207,4 @@ export const editInvFunction = async (queryData) => {
     return console.log(message);
   }
 };
+
