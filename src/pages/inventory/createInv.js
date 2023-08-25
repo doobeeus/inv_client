@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { createInventoryFunction } from "../../authService/authService";
-// import { registerUser, validateEmail } from "../../authService/authService";
-
 
 const CreateInventory = () => {
   const location = useLocation();

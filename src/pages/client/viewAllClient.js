@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { getAllClientInfo } from "../../authService/authService";
 import Button from 'react-bootstrap/Button';
 
-const SelectClient = () => {
+const ViewAllClient = () => {
     const navigate = useNavigate();
     const [clientData, setClientData] = useState([]);
     useEffect(() => {
@@ -28,20 +28,22 @@ const SelectClient = () => {
         };
         fetchData();
     }, []);
-
-    const handleClick = (clientName, buildingName) => {
-        const data = {clientName : clientName, buildingName: buildingName};
-        navigate("/createinv", {state: data});
-    }
+    
       return (
         <div>
             <div>
               <div className="--flex-center">
-              <h2>Click client to use in inventory</h2>
+              <h2>View All Clients</h2>
               {clientData.map((client, index) => 
               <ul>
                 <li>
-              <Button onClick= {() => handleClick(client.clientName, client.buildingName)}> {client.clientName}<br></br>{client.buildingName}</Button>
+                {client.clientName}<br></br>
+                {client.buildingName}<br></br>
+                {client.address}<br></br>
+                {client.contactName}<br></br>
+                {client.phoneNum}<br></br>
+                {client.contactEmail}<br></br>
+                {client.hoursOp}<br></br>
               </li>
               </ul>
               )}
@@ -52,4 +54,4 @@ const SelectClient = () => {
   };
 
 
-  export default SelectClient;
+  export default ViewAllClient;

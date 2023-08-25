@@ -78,7 +78,7 @@ export const createClientFunction = async (clientData) => {
     if (response.ok) {
       toast.success("Client Registered successfully");
     }
-    return response;
+    return response.data;
   } catch (error) {
     const message = 
       (error.response && error.response.data && error.response.data.message) ||
@@ -89,10 +89,82 @@ export const createClientFunction = async (clientData) => {
   }
 };
 
+// query client by id
+export const getOneClientFunction = async (queryData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/clients/getsingleclient`
+      , queryData
+      );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};
+
 // list all client data
 export const getAllClientInfo = async () => {
   try {
     const response = await axios.get(`${BACKEND_URL}/api/clients/getAllClientInfo`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};
+
+// query to find client
+export const queryClientFunction = async (queryData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/clients/queryClient`
+      , queryData
+      );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};
+
+// delete client
+export const deleteClientFunction = async (queryData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/clients/deleteclient`
+      , queryData
+      );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};
+
+// edit client
+export const editClientFunction = async (queryData) => {
+  try {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/clients/editclient`
+      , queryData
+      );
     return response.data;
   } catch (error) {
     const message =

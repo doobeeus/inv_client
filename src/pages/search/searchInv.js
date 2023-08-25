@@ -52,7 +52,7 @@ const viewDeleteInv = (clientName, buildingName) => {
               value={buildingName}
               onChange={handleInputChange}
             />
-            <Button onClick= {() => viewDeleteInv(clientName, buildingName)}> Edit/Delete </Button>
+            <Button onClick= {() => viewDeleteInv(clientName, buildingName)}> Search </Button>
 
           </form>
         </div>

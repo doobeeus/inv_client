@@ -4,27 +4,25 @@ import { toast } from "react-toastify";
 import Button from 'react-bootstrap/Button';
 
 const initialState = {
-  clientName: "",
-  buildingName: ""
+  clientName: ""
 };
 
 const SearchClient = () => {
   const navigate = useNavigate();
   const [formData, setformData] = useState(initialState);
-  const { clientName, buildingName } = formData;
+  const { clientName } = formData;
 
   const handleInputChange = (e) => {
-  const { name, value } = e.target;
-  setformData({ ...formData, [name]: value });
+    const { name, value } = e.target;
+    setformData({ ...formData, [name]: value });
   };
     
   const queryData = {
-    clientName,
-    buildingName,
+    clientName
   };
-const viewDeleteInv = (clientName, buildingName) => {
-    const data = {clientName : clientName, buildingName: buildingName};
-    navigate("/viewdeleteinv", {state: data});
+const viewDeleteClient = (clientName) => {
+    const data = {clientName : clientName};
+    navigate("/viewdeleteclient", {state: data});
 };
     
   return (
@@ -32,7 +30,7 @@ const viewDeleteInv = (clientName, buildingName) => {
         <div>
           <div className="--flex-center">
           </div>
-          <h2>Search inventories</h2>
+          <h2>Search Clients</h2>
 
           <form>
             <input
@@ -43,15 +41,7 @@ const viewDeleteInv = (clientName, buildingName) => {
               value={clientName}
               onChange={handleInputChange}
             />
-            <input
-              type="buildingName"
-              placeholder="buildingName"
-              required
-              name="buildingName"
-              value={buildingName}
-              onChange={handleInputChange}
-            />
-            <Button onClick= {() => viewDeleteInv(clientName, buildingName)}> Edit/Delete </Button>
+            <Button onClick= {() => viewDeleteClient(clientName)}> Edit/Delete </Button>
 
           </form>
         </div>
@@ -59,5 +49,4 @@ const viewDeleteInv = (clientName, buildingName) => {
   );
 };
 
-export default SearchClient/
-;
+export default SearchClient;

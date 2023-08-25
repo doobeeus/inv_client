@@ -8,7 +8,7 @@ const InvToClient = () => {
       <span>
             <Link to="/registerclient">Create Client</Link>
             <br></br>
-            <Link to="/selectclient">View Clients</Link>
+            <Link to="/searchclient">View Clients</Link>
             <br></br>
           </span>
     </div> 

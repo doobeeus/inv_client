@@ -75,8 +75,7 @@ const Login = () => {
           </form>
 
           <span>
-            <Link to="/home">Home</Link>
-            <p> &nbsp; Already have an account? &nbsp;</p>
+            <p> &nbsp; Don't have an account? &nbsp;</p>
             <Link to="/">Register</Link>
           </span>
         </div>
