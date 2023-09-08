@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from 'react-bootstrap/Button';
+import { getLoginStatus } from "../../authService/authService";
 
 const initialState = {
   clientName: ""
@@ -9,6 +10,16 @@ const initialState = {
 
 const SearchClient = () => {
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    const verifyCookie = async (req, res) => {
+      const loggedin = await getLoginStatus();
+      if(loggedin == false){
+        navigate("/login");
+      }
+    };
+    verifyCookie();
+  }, []);
   const [formData, setformData] = useState(initialState);
   const { clientName } = formData;
 

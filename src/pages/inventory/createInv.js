@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { createInventoryFunction } from "../../authService/authService";
+import { createInventoryFunction, getLoginStatus } from "../../authService/authService";
 
 const CreateInventory = () => {
   const location = useLocation();
@@ -17,6 +17,15 @@ const CreateInventory = () => {
       lampWattage: ""
     };
 const navigate = useNavigate();
+useEffect(() => {
+  const verifyCookie = async (req, res) => {
+    const loggedin = await getLoginStatus();
+    if(loggedin == false){
+      navigate("/login");
+    }
+  };
+  verifyCookie();
+}, []);
 const [formData, setformData] = useState(initialState);
 const { clientName, buildingName, roomArea, fixtureType, lampType, numLamps, numFixtures, lampWattage } = formData;
 

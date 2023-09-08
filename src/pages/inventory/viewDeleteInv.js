@@ -1,7 +1,7 @@
 import { useEffect, useState, React } from "react";
 import { Link, useNavigate, useLocation} from "react-router-dom";
 import { toast } from "react-toastify";
-import {queryInvFunction, deleteInvFunction } from "../../authService/authService";
+import {queryInvFunction, deleteInvFunction, getLoginStatus } from "../../authService/authService";
 import Button from "react-bootstrap/esm/Button";
 import { CSVLink } from "react-csv";
 
@@ -29,6 +29,13 @@ const ViewDeleteInventory = () => {
             }
             setInvData(fetchedInvData);
         };
+        const verifyCookie = async (req, res) => {
+            const loggedin = await getLoginStatus();
+            if(loggedin == false){
+              navigate("/login");
+            }
+          };
+          verifyCookie();
         fetchData();
     }, []);
     const editInv = (_id) => {

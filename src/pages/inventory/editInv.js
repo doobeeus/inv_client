@@ -1,7 +1,7 @@
 import { useEffect, useState, React } from "react";
 import { Link, useNavigate, useLocation} from "react-router-dom";
 import { toast } from "react-toastify";
-import { getOneInvFunction, editInvFunction} from "../../authService/authService";
+import { getOneInvFunction, editInvFunction, getLoginStatus} from "../../authService/authService";
 
 const EditInventory = () => {
     const location = useLocation();
@@ -32,6 +32,13 @@ const EditInventory = () => {
             }
             setInitInvData(data2);
         };
+        const verifyCookie = async (req, res) => {
+          const loggedin = await getLoginStatus();
+          if(loggedin == false){
+            navigate("/login");
+          }
+        };
+        verifyCookie();
         fetchData();
     }, []);
 

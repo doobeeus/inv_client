@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { createClientFunction } from "../../authService/authService";
-// import { registerUser, validateEmail } from "../../authService/authService";
+import { createClientFunction, getLoginStatus } from "../../authService/authService";
 
 const initialState = {
     clientName: "", 
@@ -15,6 +14,16 @@ const initialState = {
   };
 
 const CreateClient = () => {
+
+  useEffect(() => {
+    const verifyCookie = async (req, res) => {
+      const loggedin = await getLoginStatus();
+      if(loggedin == false){
+        navigate("/login");
+      }
+    };
+    verifyCookie();
+  }, []);
 
 const navigate = useNavigate();
 const [formData, setformData] = useState(initialState);

@@ -1,7 +1,7 @@
 import { useEffect, useState, React } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getAllClientInfo } from "../../authService/authService";
+import { getAllClientInfo, getLoginStatus } from "../../authService/authService";
 import Button from 'react-bootstrap/Button';
 
 const ViewAllClient = () => {
@@ -26,6 +26,13 @@ const ViewAllClient = () => {
             }
             setClientData(fetchedClientData);
         };
+        const verifyCookie = async (req, res) => {
+            const loggedin = await getLoginStatus();
+            if(loggedin == false){
+              navigate("/login");
+            }
+          };
+          verifyCookie();
         fetchData();
     }, []);
     

@@ -1,7 +1,7 @@
 import { useEffect, useState, React } from "react";
 import { Link, useNavigate, useLocation} from "react-router-dom";
 import { toast } from "react-toastify";
-import {queryClientFunction, deleteClientFunction } from "../../authService/authService";
+import {queryClientFunction, deleteClientFunction, getLoginStatus } from "../../authService/authService";
 import Button from "react-bootstrap/esm/Button";
 
 const ViewDeleteClient = () => {
@@ -28,6 +28,13 @@ const ViewDeleteClient = () => {
             }
             setClientData(fetchedClientData);
         };
+        const verifyCookie = async (req, res) => {
+            const loggedin = await getLoginStatus();
+            if(loggedin == false){
+              navigate("/login");
+            }
+          };
+          verifyCookie();
         fetchData();
     }, []);
     const editClient = (_id) => {

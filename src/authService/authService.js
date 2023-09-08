@@ -39,7 +39,6 @@ export const loginUser = async (userData) => {
       userData
     );
     if (response.statusText === "OK") {
-      alert("Login Successful...");
       return response.data; // data output, but none of the others are working? possibly due to jwt and authmiddleware?
     }
 
@@ -280,3 +279,30 @@ export const editInvFunction = async (queryData) => {
   }
 };
 
+// login status for auth
+export const getLoginStatus = async () => {
+  try {
+    const response = await axios.get(`${BACKEND_URL}/api/users/loggedin`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
+export const getInfo = async () => {
+  try {
+    const response = await axios.get(`${BACKEND_URL}`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+    return console.log(message);
+  }
+};

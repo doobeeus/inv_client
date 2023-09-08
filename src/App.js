@@ -14,6 +14,11 @@ import ViewAllClient from "./pages/client/viewAllClient.js";
 import ViewDeleteClient from "./pages/client/viewDeleteClient.js";
 import SearchClient from "./pages/search/searchClient.js";
 import EditClient from "./pages/client/editClient.js";
+import axios from "axios";
+
+
+axios.defaults.withCredentials = true;
+
 
 function App() {
   return (

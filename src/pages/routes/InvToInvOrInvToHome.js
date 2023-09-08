@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/esm/Button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { getLoginStatus } from "../../authService/authService";
 
 const InvToInvHome = () => {
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    const verifyCookie = async (req, res) => {
+      const loggedin = await getLoginStatus();
+      if(loggedin == false){
+        navigate("/login");
+      }
+    };
+    verifyCookie();
+  }, []);
   const location = useLocation();
   const prevData = location.state;
   const initialState = {

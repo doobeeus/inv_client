@@ -1,9 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logoutUser } from "../../authService/authService";
+import { logoutUser, getLoginStatus } from "../../authService/authService";
+import { useCookies } from "react-cookie";
 import Button from "react-bootstrap/esm/Button";
 const Home = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const verifyCookie = async (req, res) => {
+      const loggedin = await getLoginStatus();
+      if(loggedin == false){
+        navigate("/login");
+      }
+    };
+    verifyCookie();
+  }, []);
+
   const logout = async (e) => {
     logoutUser();
     navigate("/login");

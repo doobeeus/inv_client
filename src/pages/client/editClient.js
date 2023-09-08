@@ -1,7 +1,7 @@
 import { useEffect, useState, React } from "react";
 import { Link, useNavigate, useLocation} from "react-router-dom";
 import { toast } from "react-toastify";
-import { getOneClientFunction, editClientFunction} from "../../authService/authService";
+import { getOneClientFunction, editClientFunction, getLoginStatus} from "../../authService/authService";
 
 const EditClient = () => {
     const location = useLocation();
@@ -31,6 +31,14 @@ const EditClient = () => {
             }
             setInitClientData(data2);
         };
+        const verifyCookie = async (req, res) => {
+          const loggedin = await getLoginStatus();
+          if(loggedin == false){
+            navigate("/login");
+          }
+        };
+        verifyCookie();
+        
         fetchData();
     }, []);
 
