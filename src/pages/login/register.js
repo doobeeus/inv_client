@@ -43,8 +43,9 @@ const userData = {
 };
 try {
   const data = await registerUser(userData);
-    console.log(data);
-    // navigate("/login");
+  if(data){
+    navigate("/home");
+  }
 } catch (error) {
    console.log(error);
   }

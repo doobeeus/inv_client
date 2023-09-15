@@ -19,8 +19,8 @@ export const registerUser = async (userData) => {
     );
     if (response.statusText === "OK") {
       toast.success("User Registered successfully");
-      return response.data;
     }
+    return response.data;
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||

@@ -15,7 +15,6 @@ const ViewDeleteInventory = () => {
         const fetchData = async () => {
             try {
                 const data = await queryInvFunction(prevData);
-                console.log(data);
                 let allDocs = []
                 data.forEach((doc) => {
                     allDocs.push({...doc});
@@ -31,7 +30,7 @@ const ViewDeleteInventory = () => {
         };
         const verifyCookie = async (req, res) => {
             const loggedin = await getLoginStatus();
-            if(loggedin == false){
+            if(loggedin === false){
               navigate("/login");
             }
           };
@@ -54,6 +53,18 @@ const ViewDeleteInventory = () => {
                 console.log(e);
             }
     };
+    
+    // const [csvData, setcsvData] = useState([]);
+    // const handleCheckboxChange = (event) => {
+    //     let csvArray = [...csvData, event.target.id];
+    //     console.log(csvArray);
+
+    //     if (csvData.includes(event.target.id)) {
+    //         csvArray = csvArray.filter(e => e !== event.target.id);
+    //     } 
+    //     setcsvData(csvArray);
+    //     console.log(csvData);
+    // };
 
       return (
         <div>
@@ -61,8 +72,9 @@ const ViewDeleteInventory = () => {
               <div className="--flex-center">
               <h2>Edit or Delete Inventory</h2>
               {invData.map((inv, index) => 
-              <ul>
-               <li>
+              
+               <div>
+               {/* <input type="checkbox" id={inv} onChange={(e)=> handleCheckboxChange(e)} /> */}
                Client Name: {inv.clientName}<br></br>
                Building Name: {inv.buildingName}<br></br>
                Room Area: {inv.roomArea}<br></br>
@@ -71,10 +83,10 @@ const ViewDeleteInventory = () => {
                Number of Lamps: {inv.numLamps}<br></br>
                Number of Fixtures: {inv.numFixtures}<br></br>
                Lamp Wattage: {inv.lampWattage}<br></br>
-              </li>
+              
               <Button onClick= {() => editInv(inv._id)}> Edit </Button>
               <Button onClick= {() => deleteInv(inv._id)}> Delete </Button>
-              </ul>
+              </div>
               )}
               </div>
               <CSVLink data={invData}>Download me</CSVLink>;
